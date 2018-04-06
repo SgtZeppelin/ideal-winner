@@ -5,6 +5,8 @@
  */
 package cracker;
 
+import java.util.List;
+
 /**
  *
  * @author gersc
@@ -27,7 +29,7 @@ public class Main {
                 + "GILDUDOOGDULD VXI OGFS NXIXFS IBU ITFS WDIGH AÜU NDI PTUAXZZ. AUXPTU, NDU 2006 XBO NDU IXPR XBOOFSGDN, OKUXFS NDOSXZC IBU ITFS VGL WDIGHDI VDIOFSDI ÜCDU ODGI DUZDCIGO. \"QDVXIN SÄLLD DO BILDUOBFSDI OTZZDI, NDII DO GOL DGID HUTßD \n"
                 + "AUBOLUXLGTI, NXOO DO DUOL QDLYL XIO ZGFSL MTVVL BIN IGFSL OFSTI 2004 NGOMBLGDUL WBUND\", CDOFSWDUL OGFS AUXPTU.";
         RealLetterCounter rlc = new RealLetterCounter();
-        LetterNumberPair[] count = rlc.count(cypertext);
+        List<LetterNumberPair> count = rlc.count(cypertext);
         for(LetterNumberPair pair : count){
         System.out.println(pair);
         }

@@ -5,10 +5,12 @@
  */
 package cracker;
 
+import java.util.List;
+
 /**
  *
  * @author gersc
  */
 public interface LetterCounter {
-    public LetterNumberPair[] count( String text );
+    public List<LetterNumberPair> count( String text );
 }

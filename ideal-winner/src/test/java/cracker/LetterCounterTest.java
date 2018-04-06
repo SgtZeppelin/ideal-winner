@@ -5,6 +5,7 @@
  */
 package cracker;
 
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -42,23 +43,23 @@ public class LetterCounterTest {
     @org.junit.Test
     public void testCount() {
         LetterCounter countDooku = new RealLetterCounter();
-        LetterNumberPair[] count = countDooku.count("a");
-        assertTrue(count.length == 1);
+        List<LetterNumberPair> count = countDooku.count("a");
+        assertTrue(count.size() == 1);
         count = countDooku.count("aa");
-        assertTrue(count.length == 1);
+        assertTrue(count.size() == 1);
         count = countDooku.count("ab");
-        assertTrue(count.length == 2);
+        assertTrue(count.size() == 2);
         
-        assertTrue(count[0].getLetter() == 'a');
-        assertTrue(count[0].getNumber() == 1);
+        assertTrue(count.get(0).getLetter() == 'a');
+        assertTrue(count.get(0).getNumber() == 1);
         
-        assertTrue(count[1].getLetter() == 'b');
-        assertTrue(count[1].getNumber() == 1);
+        assertTrue(count.get(1).getLetter() == 'b');
+        assertTrue(count.get(1).getNumber() == 1);
         
         count = countDooku.count("Aa");
         
-        assertTrue(count[0].getLetter() == 'a');
-        assertTrue(count[0].getNumber() == 2);
+        assertTrue(count.get(0).getLetter() == 'a');
+        assertTrue(count.get(0).getNumber() == 2);
                 
     
     }

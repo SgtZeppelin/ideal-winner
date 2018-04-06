@@ -16,7 +16,7 @@ import java.util.List;
 public class RealLetterCounter implements LetterCounter {
 
     @Override
-    public LetterNumberPair[] count(String text) {
+    public List<LetterNumberPair> count(String text) {
 
         text = text.toLowerCase();
 
@@ -37,7 +37,7 @@ public class RealLetterCounter implements LetterCounter {
         }
         
         Collections.sort(pairList);
-        return (LetterNumberPair[]) pairList.toArray( new LetterNumberPair[pairList.size()] );
+        return pairList;
     }
 
     private boolean isLetterInList(char letter, List<LetterNumberPair> pairList) {
