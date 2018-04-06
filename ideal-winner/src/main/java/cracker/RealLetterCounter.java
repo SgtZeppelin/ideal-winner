@@ -5,15 +5,58 @@
  */
 package cracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Flo
  */
-public class RealLetterCounter implements LetterCounter{
+public class RealLetterCounter implements LetterCounter {
 
     @Override
     public LetterNumberPair[] count(String text) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        text = text.toLowerCase();
+
+        List<LetterNumberPair> pairList = new ArrayList<>();
+
+        for (int i = 0; i < text.length(); i++) {
+
+            char letter = text.charAt(i);
+            
+            if ( this.isLetterInList( letter, pairList ) ) {
+                LetterNumberPair localPair = this.getLetterNumberPair( letter, pairList );
+                localPair.setNumber( localPair.getNumber() + 1 );
+            }
+            else {
+                pairList.add( new LetterNumberPair( letter, 1 ) );
+            }
+
+        }
+        
+        return (LetterNumberPair[]) pairList.toArray( new LetterNumberPair[pairList.size()] );
+    }
+
+    private boolean isLetterInList(char letter, List<LetterNumberPair> pairList) {
+
+        for (LetterNumberPair pair : pairList) {
+            if (pair.getLetter() == letter) {
+                return true;
+            }
+
+        }
+        return false;
     }
     
+    private LetterNumberPair getLetterNumberPair(char letter, List<LetterNumberPair> pairList ) {
+        
+        for ( LetterNumberPair pair : pairList ) {
+            if (pair.getLetter() == letter) {
+                return pair;
+            }
+        }
+        return null;
+    }
+
 }
