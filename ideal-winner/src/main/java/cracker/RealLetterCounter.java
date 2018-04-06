@@ -6,6 +6,7 @@
 package cracker;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,6 +36,7 @@ public class RealLetterCounter implements LetterCounter {
 
         }
         
+        Collections.sort(pairList);
         return (LetterNumberPair[]) pairList.toArray( new LetterNumberPair[pairList.size()] );
     }
 

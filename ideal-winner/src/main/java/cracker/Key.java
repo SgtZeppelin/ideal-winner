@@ -19,6 +19,10 @@ public class Key {
     public Key(List<KeyLetter> keyList) {
         this.keyList = keyList;
     }
+
+    public List<KeyLetter> getKeyList() {
+        return keyList;
+    }
     
     
     

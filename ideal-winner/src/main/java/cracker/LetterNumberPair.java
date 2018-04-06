@@ -9,7 +9,7 @@ package cracker;
  *
  * @author gersc
  */
-public class LetterNumberPair {
+public class LetterNumberPair implements Comparable<LetterNumberPair> {
     private char letter;
     private int number;
 
@@ -28,6 +28,21 @@ public class LetterNumberPair {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return "LetterNumberPair{" + "letter=" + letter + ", number=" + number + '}';
+    }
+
+    @Override
+    public int compareTo(LetterNumberPair o) {
+        if(this.getNumber()>o.getNumber())
+            return 1;
+        else if(this.getNumber()<o.getNumber())
+            return -1;
+        else
+            return 0;
     }
     
     

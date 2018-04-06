@@ -43,7 +43,11 @@ public class DecryptorTest {
     public void testSomeMethod() {
         Decryptor decor = new Decryptor();
         List<KeyLetter> keyList = new ArrayList();
-        assertTrue(decor.decrypt( "SXZZT", new Key(keyList)) == "Hallo" );
+        keyList.add(new KeyLetter('S','h'));
+        keyList.add(new KeyLetter('X','a'));
+        keyList.add(new KeyLetter('Z','l'));
+        keyList.add(new KeyLetter('T','o'));                
+        assertTrue(decor.decrypt( "SXZZT", new Key(keyList)).equals("hallo" ));
     }
     
 }

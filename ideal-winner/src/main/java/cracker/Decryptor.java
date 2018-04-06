@@ -5,6 +5,8 @@
  */
 package cracker;
 
+import java.util.List;
+
 /**
  *
  * @author gersc
@@ -13,7 +15,13 @@ public class Decryptor {
     
     public String decrypt( String text, Key key ) {
         
-        return null;
+        List<KeyLetter> keyList = key.getKeyList();
+        for(KeyLetter tempKey : keyList){
+            text = text.replace((""+tempKey.getA()).toUpperCase() , ""+tempKey.getB());
+        }
+            
+        
+        return text;
     }
     
 }
