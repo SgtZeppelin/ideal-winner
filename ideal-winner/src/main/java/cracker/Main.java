@@ -5,7 +5,16 @@
  */
 package cracker;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,21 +23,18 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        String cypertext = "DE-MXVKAKGZTL OKUGFSL ÜCDU BAT-OGFSLBIH  NXPGN AUXPTU WXU 18 QXSUD MXVKAKGZTL CDG NDU BO-IXPR. DU PDULUXBL NDV, WXO DU VGL DGHDIDI XBHDI HDODSDI SXL. BIN WXO DU GV ITPDVCDU 2004 OXS, WXU DGI AZBHTCQDML, NXO IGFSL GNDILGAGYGDUCXU WXU -\n"
-                + "XBFS CDMXIIL XZO BAT. XV PDUHXIHDIDI WTFSDIDIND ÜCDUUXOFSLD NXO KDILXHTI VGL NDU VDZNBIH, QXSUDZXIH BILDU OLUDIHOLDU HDSDGVSXZLBIH IXFS BATO HDATUOFSL YB SXCDI. IXFSNDV NXO XVDUGMXIGOFSD PDULDGNGHBIHOVGIGOLDUGBV VDSUDUD PGNDTO PTI\n"
-                + "OGFSLBIHDI PTI BICDMXIILDI, BIDUMZÄUZGFSDI AZBHTCQDMLDI PDUÖAADILZGFSLD, VDZNDL OGFS IBI DGI DSDVXZGHDU VGZGLÄUKGZTL. NXPGN AUXPTU WXU 18 QXSUD ZXIH MXVKAKGZTL NDU BO IXPR. ZXIHD YDGL OKUXFS DU IBU VGL DGIHDWDGSLDI ÜCDU NXO, WXO DU XI \n"
-                + "QDIDV ITPDVCDULXH 2004 PTI ODGIDV FTFMKGL XBO HDODSDI SXCDI WGZZ. IBI CUXFS DU ODGI OFSWDGHDI BIN OFSGZNDULD VDSUDUDI VDNGDI, NXUBILDU NGD \"IDW RTUM LGVDO\" BIN \"FII\", ODGID VROLDUGÖOD CDHDHIBIH. AUXPTU, NDU YB NGDODU YDGL MTVVXINXIL \n"
-                + "DGIDU AZBHOLXAADZ WXU, AÜSULD DGHDIDI XIHXCDI YBATZHD VGL ODGIDV FT-KGZTLDI DGID UTBLGIDÜCBIH GV ZBALUXBV PTU NDU OÜNMXZGATUIGOFSDI MÜOLD NBUFS, XZO GSV DGI WDGßDO, TPXZDO, DLWX YWÖZA VDLDU ZXIHDO, AZÜHDZZTODO TCQDML XBA NDV UXNXU \n"
-                + "DUOFSGDIDI ODGI OTZZ. YBPTU SXLLDI VDSUDUD XI NDU ÜCBIH CDLDGZGHLD ZTLODI CDUGFSLDL, NXOO NTUL TCQDMLD XBO UBIN 24.000 VDLDUI SÖSD CGO MIXKK ÜCDU NXO WXOODU AXZZDI BIN WGDNDU HDUXND IXFS TCDI OFSGDßDI WÜUNDI. XZO DU OGFS NDV TCQDML \n"
-                + "IÄSDULD, SXCD NGDODO CDOFSZDBIGHL BIN PDUOFSWXIN GI WDIGHDU XZO YWDG ODMBINDI WGDNDU, OFSGZNDUL AUXPTU. \"GFS WDGß IGFSL, WXO GFS HDODSDI SXCD. GFS WDGß IBU, DO WXU ODSU CDDGINUBFMDIN, ODSU OFSIDZZ BIN GFS WÜUND DO HDUID VXZ AZGDHDI.\" \n"
-                + "HDAUXHL ÜCDU NGD SDUMBIAL NDO TCQDMLO, YDGHLD OGFS AUXPTU BIVGOOPDUOLÄINZGFS: \"DLWXO, NXO IGFSL PTI NGDODU DUND WXU.\" DU SXCD GI ODGIDV HXIYDI ZDCDI IGFSLO HDODSDI, NXO NDUXUL CDOFSZDBIGHDI MXII. \"WGU MDSULDI BV YB NDU OLDZZD BIN NTUL \n"
-                + "WXU IGFSLO VDSU. IBU CZXBDO WXOODU.\" VDSU YBV LSDVX NXO HDSDGVD VGZZGTIDI-KUTHUXVV: KDILXHTI ATUOFSLD QXSUDZXIH IXFS BATO 17.12.17 NXO HDSDGVD VGZZGTIDI-KUTHUXVV KDILXHTI ATUOFSLD QXSUDZXIH IXFS BATO BIHDWÖSIZGFS ZXIHHDYTHDI BIN XBO \n"
-                + "NDI LGDADI NDO XZZO: NGD XOLUTITVDI VBOOLDI OGFS VGL NDU DUATUOFSBIH NDO VROLDUGÖODI HXOLDO CDDGZDI. TBVBXVBX WGUN QDLYL XBA ODGIDV WDH NBUFSO OTIIDIOROLDV YB CZXOO, BV GSI WDGLDU CDTCXFSLDI YB MÖIIDI. 18.12.17 MDGI XZGDI-UXBVOFSGAA \n"
-                + "XOLDUTGN TBVBXVBX GOL IXLÜUZGFSDO TCQDML IXOX-ZGPDOLUDXV OTZZ BAT YDGHDI: WGUN NGD GOO PTI XZGDIO CDTCXFSLDL? 15.03.16 IXOX-ZGPDOLUDXV OTZZ BAT YDGHDI WGUN NGD GOO PTI XZGDIO CDTCXFSLDL? IXFS NDV PTUAXZZ AZTH AUXPTU XBA NGD BOO IGDVGLY \n"
-                + "YBUÜFM. DGIDU XINDUDI CDOXLYBIH HDZXIH DO OKÄLDU, NXO TCQDML AÜU DLWX DGID VGIBLD YB PDUATZHDI. NGD CDHDHIBIH WBUND VGL NDU CTUNMXVDUX GI DGIDV PGNDT ADOLHDSXZLDI. NXUGI YB ODSDI: DGI AZGDHDINDO, UTLGDUDINDO DLWXO. CDG NDU IXPR \n"
-                + "GILDUDOOGDULD VXI OGFS NXIXFS IBU ITFS WDIGH AÜU NDI PTUAXZZ. AUXPTU, NDU 2006 XBO NDU IXPR XBOOFSGDN, OKUXFS NDOSXZC IBU ITFS VGL WDIGHDI VDIOFSDI ÜCDU ODGI DUZDCIGO. \"QDVXIN SÄLLD DO BILDUOBFSDI OTZZDI, NDII DO GOL DGID HUTßD \n"
-                + "AUBOLUXLGTI, NXOO DO DUOL QDLYL XIO ZGFSL MTVVL BIN IGFSL OFSTI 2004 NGOMBLGDUL WBUND\", CDOFSWDUL OGFS AUXPTU.";
+        StringBuilder builder = new StringBuilder();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File("C:\\Users\\Flo\\Documents\\NetBeansProjects\\ideal-winner2\\bibel.txt"))));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FitnessFunction.class.getName()).log(Level.SEVERE, null, ex);
+        }
         RealLetterCounter rlc = new RealLetterCounter();
+        String cypertext = builder.toString();
         List<LetterNumberPair> count = rlc.count(cypertext);
         KeyTranslator keyTranslator = new KeyTranslator();
         Filter filter = new Filter();
@@ -36,13 +42,22 @@ public class Main {
         Key key = keyTranslator.translate(count);
         FitnessFunction fitnessFunction = new FitnessFunction("C:\\Users\\Flo\\Documents\\NetBeansProjects\\ideal-winner2\\wordlist.txt");
         Decryptor decryptor = new Decryptor();
+        System.out.println(decryptor.decrypt(cypertext, key));
         int fitness = fitnessFunction.getFitness(decryptor.decrypt(cypertext, key));
+
         Mutator mutator = new Mutator();
         Key bestKey = key;
         int counter = 0;
+        Random random = new Random();
         while (true) {
 
             key = mutator.shake(bestKey);
+            if (random.nextBoolean()) {
+                key = mutator.shake(key);
+                if (random.nextBoolean()) {
+                    key = mutator.shake(key);
+                }
+            }
 
             String decrypt = decryptor.decrypt(cypertext, key);
             int tempFitness = fitnessFunction.getFitness(decrypt);
@@ -53,7 +68,7 @@ public class Main {
                 System.out.println(decrypt);
                 System.out.println(fitness);
                 System.out.println(counter);
-                
+
             }
         }
 
