@@ -26,6 +26,11 @@ public class KeyLetter {
     public char getB() {
         return b;
     }
+
+    public void setB(char b) {
+        this.b = b;
+    }
+    
     
     
     
