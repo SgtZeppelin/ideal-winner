@@ -34,10 +34,29 @@ public class Main {
         Filter filter = new Filter();
         count = filter.deleteSpecialCharacters(count);
         Key key = keyTranslator.translate(count);
+        FitnessFunction fitnessFunction = new FitnessFunction("C:\\Users\\Flo\\Documents\\NetBeansProjects\\ideal-winner2\\wordlist.txt");
         Decryptor decryptor = new Decryptor();
-        String decrypt = decryptor.decrypt(cypertext, key);
-        System.out.println(decrypt);
-        
+        int fitness = fitnessFunction.getFitness(decryptor.decrypt(cypertext, key));
+        Mutator mutator = new Mutator();
+        Key bestKey = key;
+        int counter = 0;
+        while (true) {
+
+            key = mutator.shake(bestKey);
+
+            String decrypt = decryptor.decrypt(cypertext, key);
+            int tempFitness = fitnessFunction.getFitness(decrypt);
+            counter = counter + 1;
+            if (tempFitness > fitness) {
+                bestKey = key;
+                fitness = tempFitness;
+                System.out.println(decrypt);
+                System.out.println(fitness);
+                System.out.println(counter);
+                
+            }
+        }
+
     }
 
 }
