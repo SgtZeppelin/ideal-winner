@@ -30,9 +30,14 @@ public class Main {
                 + "AUBOLUXLGTI, NXOO DO DUOL QDLYL XIO ZGFSL MTVVL BIN IGFSL OFSTI 2004 NGOMBLGDUL WBUND\", CDOFSWDUL OGFS AUXPTU.";
         RealLetterCounter rlc = new RealLetterCounter();
         List<LetterNumberPair> count = rlc.count(cypertext);
-        for(LetterNumberPair pair : count){
-        System.out.println(pair);
-        }
+        KeyTranslator keyTranslator = new KeyTranslator();
+        Filter filter = new Filter();
+        count = filter.deleteSpecialCharacters(count);
+        Key key = keyTranslator.translate(count);
+        Decryptor decryptor = new Decryptor();
+        String decrypt = decryptor.decrypt(cypertext, key);
+        System.out.println(decrypt);
+        
     }
 
 }
