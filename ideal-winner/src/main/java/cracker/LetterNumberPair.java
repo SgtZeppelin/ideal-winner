@@ -38,9 +38,9 @@ public class LetterNumberPair implements Comparable<LetterNumberPair> {
     @Override
     public int compareTo(LetterNumberPair o) {
         if(this.getNumber()>o.getNumber())
-            return 1;
-        else if(this.getNumber()<o.getNumber())
             return -1;
+        else if(this.getNumber()<o.getNumber())
+            return 1;
         else
             return 0;
     }
